@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {{ redirect_to_login_immediately }}
+    <h5>WELCOME, {{ user | title }}</h5>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-record' %}">
+    CREATE A NEW RECORD
+    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </a>
+
+    <hr>
+    <table class="table table-hover table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">FULL NAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">PHONE</th>
+                <th scope="col">ADDRESS</th>
+                <th scope="col">CITY</th>
+                <th scope="col">PROVINCE</th>
+                <th scope="col">COUNTRY</th>
+                <th scope="col">DATE JOINED</th>
+                <th scope="col">VIEWS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if records %}
+                {% for record in records %}
+                    <tr>
+                        <td>{{ record.id }}</td>
+                        <td>{{ record.first_name }} {{ record.last_name }}</td>
+                        <td>{{ record.email }}</td>
+                        <td>{{ record.phone_number }}</td>
+                        <td>{{ record.address }}</td>
+                        <td>{{ record.city }}</td>
+                        <td>{{ record.province }}</td>
+                        <td>{{ record.country }}</td>
+                        <td>{{ record.created_on }}</td>
+
+                        <td>
+                            <a class="btn btn-success btn-sm" href="{% url 'record' record.id %}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

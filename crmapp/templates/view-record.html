@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<body>
+    <div class="card-body">
+        <i class="fa fa-uder-circle-o" aria-hidden="true"></i>
+
+        <strong>
+
+            {{ record.first_name | upper }}
+            {{ record.last_name | upper }}
+
+        </strong>
+        <p>   <strong> ID: </strong> {{ record.id }}</p>
+        <p>   <strong> EMAIL: </strong> {{ record.email }}</p>
+        <p>   <strong> PHONE NUMBER: </strong> {{ record.phone_number }}</p>
+        <p>   <strong> ADDRESS: </strong> {{ record.address }}</p>
+        <p>   <strong> CITY: </strong> {{ record.city }}</p>
+        <p>   <strong> PROVINCE: </strong> {{ record.province }}</p>
+        <p>   <strong> COUNTRY: </strong> {{ record.country }}</p>
+        <p>   <strong> CREATION DATE: </strong> {{ record.created_on }}</p>
+    </div>
+<br>
+<a href="{% url 'dashboard' %}" class="btn btn-secondary">RETURN<i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+<a href="{% url 'update-record' record.id %}" class="btn btn-secondary">UPDATE RECORD<i class="fa fa-arrow-plus" aria-hidden="true"></i></a>
+<a href="{% url 'delete-record' record.id %}" class="btn btn-secondary">DELETE RECORD<i class="fa fa-arrow-minus" aria-hidden="true"></i></a>
+
+</body>
+{% endblock %}
